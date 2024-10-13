@@ -40,7 +40,7 @@ export type HttpClient = {
   delete: <T>(endpoint: string, props?: RequestProps) => Promise<T>;
 };
 
-type HttpClientProps = {
+export type HttpClientProps = {
   url: string;
   log?: boolean;
   headers?: () => Headers;

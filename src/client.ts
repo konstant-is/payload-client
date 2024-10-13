@@ -1,13 +1,17 @@
 import { GeneratedTypes } from "payload";
 import { Options as FindOptions } from "payload/dist/collections/operations/local/find";
 import { PaginatedDocs } from "payload/dist/database/types";
-import { HttpClient } from "./lib/httpClient";
+import { httpClient, HttpClient, HttpClientProps } from "@/lib/httpClient";
 
 export class PayloadClient<TGeneratedTypes extends GeneratedTypes> {
   private client: HttpClient;
 
-  constructor(client: HttpClient) {
-    this.client = client;
+  constructor(props: HttpClientProps) {
+    const { url, ...rest } = props;
+    this.client = httpClient({
+      url: `${url}/api`,
+      ...rest,
+    });
   }
 
   find = async <T extends keyof TGeneratedTypes["collections"]>(
