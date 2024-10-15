@@ -5,12 +5,14 @@ import { httpClient, HttpClientProps } from "@/lib/httpClient";
 import * as op from "@/operations";
 import { ByIDOptions, GeneratedTypes, ManyOptions } from "@/types";
 
-type RestConfig = {
+export type PayloadRestConfig = {
   log?: boolean;
 } & HttpClientProps;
 
+export type PayloadRestClient = ReturnType<typeof payloadRestClient>;
+
 export const payloadRestClient = <TGeneratedTypes extends GeneratedTypes>(
-  config: RestConfig
+  config: PayloadRestConfig
 ) => {
   const { log, url, ...props } = config;
   const client = httpClient({
