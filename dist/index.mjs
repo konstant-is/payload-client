@@ -77,24 +77,120 @@ function httpClient(props) {
   };
 }
 
+// src/operations/find.ts
+var find = async (client, options) => {
+  const { collection, ...rest } = options;
+  return client.get(`${collection}`, {
+    query: rest,
+    nextConfig: {
+      tags: ["payload"]
+    }
+  });
+};
+var findByID = (client, options) => {
+  const { collection, id, ...rest } = options;
+  const url = `${collection}/${id}`;
+  return client.get(url, {
+    query: rest,
+    nextConfig: {
+      tags: ["payload"]
+    }
+  });
+};
+
+// src/operations/update.ts
+var update = (client, options) => {
+  const { collection, data, ...rest } = options;
+  return client.put(collection, {
+    body: data,
+    query: rest
+  });
+};
+var updateByID = (client, options) => {
+  const { collection, id, data, ...rest } = options;
+  return client.put(`${collection}/${id}`, {
+    body: data,
+    query: rest
+  });
+};
+
+// src/operations/create.ts
+var create = (client, options) => {
+  const { collection, data, ...rest } = options;
+  return client.post(`${collection}`, {
+    body: data,
+    query: rest
+  });
+};
+
+// src/operations/delete.ts
+var deleteMany = (client, options) => {
+  const { collection, ...rest } = options;
+  return client.delete(`${collection}`, {
+    query: rest
+  });
+};
+var deleteByID = (client, options) => {
+  const { collection, id, ...rest } = options;
+  return client.delete(`${collection}/${id}`, {
+    query: rest
+  });
+};
+
+// src/operations/count.ts
+var count = (client, options) => {
+  const { collection, ...rest } = options;
+  return client.get(`${collection}/count`, {
+    query: rest,
+    nextConfig: {
+      tags: ["payload"]
+    }
+  });
+};
+
 // src/client.ts
-var PayloadClient = class {
-  client;
-  constructor(props) {
-    const { url, ...rest } = props;
-    this.client = httpClient({
-      url: `${url}/api`,
-      ...rest
-    });
-  }
-  find = async (options) => {
-    const { collection, ...rest } = options;
-    return this.client.get(collection, {
-      query: rest
-    });
+var payloadRestClient = (config) => {
+  const { log, url, ...props } = config;
+  const client = httpClient({
+    url: `${url}/api`,
+    ...props
+  });
+  const find2 = async (options) => {
+    return find(client, options);
+  };
+  const findByID2 = (options) => {
+    return findByID(client, options);
+  };
+  const count2 = (options) => {
+    return count(client, options);
+  };
+  const create2 = (options) => {
+    return create(client, options);
+  };
+  const updateByID2 = (options) => {
+    return updateByID(client, options);
+  };
+  const update2 = (options) => {
+    return update(client, options);
+  };
+  const deleteMany2 = (options) => {
+    return deleteMany(client, options);
+  };
+  const deleteByID2 = (options) => {
+    return deleteByID(client, options);
+  };
+  return {
+    find: find2,
+    findByID: findByID2,
+    count: count2,
+    create: create2,
+    update: update2,
+    updateByID: updateByID2,
+    delete: deleteMany2,
+    deleteByID: deleteByID2
   };
 };
 export {
-  PayloadClient
+  payloadRestClient
 };
 //# sourceMappingURL=index.mjs.map
