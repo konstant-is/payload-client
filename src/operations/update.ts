@@ -1,7 +1,8 @@
 import { BulkOperationResult } from "payload/dist/collections/config/types";
-import type { DeepPartial, MarkOptional } from "ts-essentials";
-import { ByIDOptions, GeneratedTypes, ManyOptions } from "../payload-types";
-import { HttpClient } from "../lib/httpClient";
+import type { DeepPartial } from "ts-essentials";
+
+import { HttpClient } from "@/lib/httpClient";
+import { ByIDOptions, GeneratedTypes, ManyOptions } from "@/types";
 
 export type UpdateByIDOptions<
   TSlug extends keyof GeneratedTypes["collections"],

@@ -1,6 +1,7 @@
-import { ByIDOptions, GeneratedTypes, ManyOptions } from "../payload-types";
-import { HttpClient } from "../lib/httpClient";
 import { PaginatedDocs } from "payload/dist/database/types";
+
+import { HttpClient } from "@/lib/httpClient";
+import { ByIDOptions, GeneratedTypes, ManyOptions } from "@/types";
 
 export type FindOptions<T extends keyof GeneratedTypes["collections"]> =
   ManyOptions<T> & {

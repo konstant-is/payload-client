@@ -1,6 +1,7 @@
 import { Where } from "payload/dist/types";
-import { HttpClient } from "../lib/httpClient";
-import { BaseOptions, GeneratedTypes } from "../payload-types";
+
+import { HttpClient } from "@/lib/httpClient";
+import { BaseOptions, GeneratedTypes } from "@/types";
 
 export type CountOptions<T extends keyof GeneratedTypes["collections"]> =
   BaseOptions<T> & {

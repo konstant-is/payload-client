@@ -1,5 +1,5 @@
-import { BaseOptions, GeneratedTypes } from "../payload-types";
-import { HttpClient } from "../lib/httpClient";
+import { HttpClient } from "@/lib/httpClient";
+import { BaseOptions, GeneratedTypes } from "@/types";
 
 export type CreateOptions<TSlug extends keyof GeneratedTypes["collections"]> =
   BaseOptions<TSlug> & {

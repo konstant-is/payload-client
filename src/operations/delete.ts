@@ -1,6 +1,7 @@
 import { BulkOperationResult } from "payload/dist/collections/config/types";
-import { HttpClient } from "../lib/httpClient";
-import { ByIDOptions, GeneratedTypes, ManyOptions } from "../payload-types";
+
+import { HttpClient } from "@/lib/httpClient";
+import { ByIDOptions, GeneratedTypes, ManyOptions } from "@/types";
 
 export type DeleteByIdOptions<
   TSlug extends keyof GeneratedTypes["collections"],
